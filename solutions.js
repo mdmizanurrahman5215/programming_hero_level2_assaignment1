@@ -57,5 +57,20 @@ class Manager extends Employee {
     }
 }
 const manager = new Manager("Alice", 50000, "Engineering");
-console.log(manager.getDetails());
-console.log(manager.getRoleInfo());
+function validateAgeAsync(age) {
+    return new Promise((resolve, reject) => {
+        if (age < 18) {
+            reject(new Error("Access Denied: Must be 18 or older"));
+            return;
+        }
+        setTimeout(() => {
+            resolve("Access Granted");
+        }, 1000);
+    });
+}
+validateAgeAsync(20)
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error.message));
+validateAgeAsync(15)
+    .then((result) => console.log(result))
+    .catch((error) => console.log(error.message));
